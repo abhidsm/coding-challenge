@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+5.times do |i|
+  project = Project.new(name: "Project Number #{i}", state: "active", owner_id: SecureRandom.uuid)
+  project.save(validate: false)
+end

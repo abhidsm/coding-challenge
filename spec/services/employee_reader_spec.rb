@@ -4,7 +4,7 @@ RSpec.describe EmployeeReader, type: :model do
 
   before(:each) do 
     @json_data = build(:employee).instance_values
-    stub_request(:get, "https://employees-api.vercel.app/employees").with(headers: {"Content-Type" => "application/json"}).to_return(:body => {data: [@json_data]}.to_json)
+    stub_request(:get, "https://employees-api.vercel.app/api/employees").with(headers: {"Accept" => "application/json"}).to_return(:body => {data: [@json_data]}.to_json)
   end 
 
   it "creates employees from the response data" do 

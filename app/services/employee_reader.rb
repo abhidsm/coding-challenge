@@ -1,6 +1,6 @@
 class EmployeeReader < ApplicationService
   include HTTParty
-  base_uri 'https://employees-api.vercel.app'
+  base_uri 'https://employees-api.vercel.app/api'
 
   def call
     create_employees(format_data(fetch_data))
@@ -9,7 +9,7 @@ class EmployeeReader < ApplicationService
   private
 
   def fetch_data 
-    self.class.get("/employees", { headers: {"Content-Type" => "application/json"} }).body
+    self.class.get("/employees", { headers: {"accept" => "application/json"} }).body
   end
 
   def format_data(json_data) 

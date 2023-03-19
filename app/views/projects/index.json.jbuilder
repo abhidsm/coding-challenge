@@ -1,0 +1,1 @@
+json.array! @projects, :id, :name, :owner_id, :state, :created_at, :updated_at
