@@ -1,6 +1,7 @@
 class EmployeeReader < ApplicationService
   include HTTParty
-  base_uri 'https://employees-api.vercel.app/api'
+  BASE_URI = Settings.employee_api_base_uri 
+  base_uri BASE_URI
 
   def call
     create_employees(format_data(fetch_data))

@@ -22,7 +22,7 @@ RSpec.describe "Projects", type: :request do
   describe "POST /" do
     
     before(:each) do
-      @manager = build(:employee, role: "manager")
+      @manager = build(:employee, role: Project::OWNER_ROLE)
       allow(Employee).to receive(:by_id).and_return(@manager) 
       @project = build(:project)
       data = {project: {name: @project.name, owner_id: @project.owner_id, state: @project.state}}
@@ -45,7 +45,7 @@ RSpec.describe "Projects", type: :request do
   describe "PUT /:id" do
     
     before(:each) do
-      @manager = build(:employee, role: "manager")
+      @manager = build(:employee, role: Project::OWNER_ROLE)
       allow(Employee).to receive(:by_id).and_return(@manager) 
       project = build(:project)
       project.save(validate: false)

@@ -12,7 +12,7 @@ RSpec.describe Project, type: :model do
     }
 
     before(:each) do
-      @manager = build(:employee, role: "manager")
+      @manager = build(:employee, role: Project::OWNER_ROLE)
       allow(Employee).to receive(:by_id).and_return(@manager) 
     end
 

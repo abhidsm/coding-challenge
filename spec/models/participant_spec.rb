@@ -9,7 +9,7 @@ RSpec.describe Participant, type: :model do
   }
 
   before(:each) do
-    @manager = build(:employee, department: "HR", role: "manager")
+    @manager = build(:employee, department: "HR", role: Project::OWNER_ROLE)
     allow(Employee).to receive(:by_id).with(@manager.id).and_return(@manager) 
     @project = create(:project, owner_id: @manager.id)
     subject.project_id = @project.id
