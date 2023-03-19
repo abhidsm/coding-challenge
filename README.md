@@ -17,6 +17,7 @@ PostgreSQL, Docker, Ruby 3.2.1
 
 * Configuration
 ```
+cp .env.example .env
 bundle install
 ```
 * Database creation
