@@ -12,4 +12,9 @@ class Employee
   def attributes
     instance_values
   end
+
+  def self.by_id(id)
+    @@_employees ||= EmployeeReader.call.index_by(&:id)
+    @@_employees[id]
+  end
 end
