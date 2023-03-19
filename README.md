@@ -83,9 +83,11 @@ Due to time constraints couldn't complete the following:
 - Add participants endpoints. 
 - Cover all the test scenarios. 
 - Multi stage docker build for caching.
+- Caching on the employee API fetch
 
 * Areas of Improvements
 
 The employees details are fetched from an external API. This can be integrated in multiple ways:
 1. We can store the employee details in database and update it everyday using a cron job. This approach will be useful if there are huge employee data and fetching this and parsing for every request won't be feasible.
 2. Another approach is to implement caching, where we will fetch the data from cache if it exist otherwise will contact the external API. This can be done only if the employee data is not huge.
+3. We can use employees/:id API to fetch whenever required. But the number of requests will be more for assign participants API where we need to check the department.
