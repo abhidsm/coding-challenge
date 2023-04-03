@@ -1,0 +1,9 @@
+development:
+  employee_api_base_uri: "https://employees-api.vercel.app/api"
+  project_owner_role: "manager"
+test:
+  employee_api_base_uri: "https://employees-api.vercel.app/api"
+  project_owner_role: "manager"
+production:
+  employee_api_base_uri: <%= ENV["EMPLOYEE_API_BASE_URI"] %>
+  project_owner_role: <%= ENV["PROJECT_OWNER_ROLE"] %>

@@ -1,6 +1,7 @@
 class EmployeeReader < ApplicationService
   include HTTParty
-  BASE_URI = Settings.employee_api_base_uri 
+  BASE_URI = Rails.configuration.settings.employee_api_base_uri 
+  MAX_RETRIES = 3
   base_uri BASE_URI
 
   def call
@@ -10,7 +11,9 @@ class EmployeeReader < ApplicationService
   private
 
   def fetch_data 
-    self.class.get("/employees", { headers: {"accept" => "application/json"} }).body
+    Rails.cache.fetch("employees_api", expires_in: 1.hour) do 
+      fetch_data_from_api
+    end
   end
 
   def format_data(json_data) 
@@ -22,6 +25,25 @@ class EmployeeReader < ApplicationService
       employee = Employee.new
       employee.from_json(employee_data.to_json)
     end
+  end
+
+  def fetch_data_from_api
+    response = self.class.get(url, options)
+    unless response.success?
+      (MAX_RETRIES-1).times do 
+        response = self.class.get(url, options)
+        break if response.success?
+      end
+    end
+    response.body
+  end
+
+  def url 
+    "/employees"
+  end
+
+  def options
+    { headers: {"accept" => "application/json"} }
   end
 
 end

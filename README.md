@@ -81,9 +81,12 @@ dockr-compose up
 
 Due to time constraints couldn't complete the following:
 - Add participants endpoints. 
+- Filter projects in the fetch API
+- Pagination on fetch API
 - Cover all the test scenarios. 
 - Multi stage docker build for caching.
 - Caching on the employee API fetch
+- App Key authentication for APIs 
 
 * Areas of Improvements
 

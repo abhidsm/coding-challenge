@@ -9,7 +9,6 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      @project
       @owner = Employee.by_id(@project.owner_id)
     else
       render json: @project.errors, status: :unprocessable_entity
@@ -18,7 +17,6 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      @project
       @owner = Employee.by_id(@project.owner_id)
     else
       render json: @project.errors, status: :unprocessable_entity
